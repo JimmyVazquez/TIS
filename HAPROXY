@@ -8,6 +8,9 @@ apt-get install haproxy
 Comprobar la version del haproxy
 haproxy -v
 //////////Cuarto paso/////////////////////////////////
+Habilitar HAProxy
+
+//////////Cuarto paso/////////////////////////////////
 Configurar HAPorxy y tambien realizamos un backup del archivo a configurar
 cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.real.cfg
 ////////////Sexto paso///////////////////////////////
