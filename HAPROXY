@@ -37,4 +37,4 @@ haproxy -f /etc/haproxy/haproxy.cfg -c
 Reinciamos el servicio Haproxy
 systemctl restart haproxy
 
-
+rata
