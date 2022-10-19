@@ -1,0 +1,37 @@
+////////////////Primer paso//////////////////////////////
+Actualizar la lista de paquetes
+apt-get update
+/////////////Segundo paso////////////////////////////////
+Instalar el servicio Haproxy
+apt-get install haproxy
+///////////Tercer paso/////////////////////////////////
+Comprobar la version del haproxy
+haproxy -v
+//////////Cuarto paso/////////////////////////////////
+Configurar HAPorxy y tambien realizamos un backup del archivo a configurar
+cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.real.cfg
+////////////Sexto paso///////////////////////////////
+Editar el archivo de configuración haproxy.cfg.
+vim /etc/haproxy/haproxy.cfg
+//////////Septimo paso///////////////
+Añadir las siguientes lineas al final del archivo haproxy.cfg
+
+frontend http_front
+        bind *:80
+        stats uri /haproxy?stats
+        default_backend http_back
+
+backend http_back
+        balance         roundrobin
+        server wbs1.com 192.168.5.155:80 check
+        server wbs2.com 192.168.5.147:80 check
+                                                
+
+///////////////Octavo paso////////////////////
+Utilizamos el siguiente comando para probar el archivo de configuración denominado haproxy.cfg
+haproxy -f /etc/haproxy/haproxy.cfg -c
+/////////////////////Noveno paso/////////////////
+Reinciamos el servicio Haproxy
+systemctl restart haproxy
+
+
